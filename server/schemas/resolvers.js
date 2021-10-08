@@ -25,7 +25,23 @@ Mutation: {
     if (!correctPw) {
       return res.status(400).json({ message: 'Incorrect password!' });
     }
-    const toekn = signToken(user);
+    const token = signToken(user);
     return { token, user };
-  };
+  }, 
+  addUser: async (parent, args) => {
+      const user = await User.create(args); 
+      if (!user) {
+          return ({ message: 'Something went wrong'});
+      }
+      const token = signToken(user); 
+      return ({ token, user }); 
+  }, 
+  saveBook: async (parent, args, context) => {
+      const updateUser = await context.findOneAndUpdate(
+          {_id: context.user._id }, 
+          { $addToSet: { savedBooks: newBook }}, 
+          { new: true, runValidators: true }
+      )
+      return updateUser;
+  }
 }
