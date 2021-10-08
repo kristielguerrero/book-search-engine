@@ -53,3 +53,5 @@ Mutation: {
       return updateUser; 
   }
 }
+
+module.exports = resolvers; 
