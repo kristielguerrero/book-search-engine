@@ -43,5 +43,13 @@ Mutation: {
           { new: true, runValidators: true }
       )
       return updateUser;
+  }, 
+  removeBook: async (parent, { bookId }, context) => {
+      const updateUser = await User.findOneAndUpdate(
+          { _id: context.user._id }, 
+          { $pull: { savedBooks: { bookId: bookId }}}, 
+          { new: true }
+      )
+      return updateUser; 
   }
 }
