@@ -22,7 +22,7 @@ mutation addUser($username: String, $email: String, $password: String){
             email
             bookCount
             savedBooks{
-                savedBooks: [book]
+                #savedBooks: [book]
                 bookId
                 authors
                 description
@@ -54,7 +54,7 @@ mutation removeBook($bookId: String){
         username
         email
         savedBooks{
-            savedBooks: [book]
+            # savedBooks: [book]
             bookId 
             authorsdescription
             titleimage
